@@ -1,0 +1,117 @@
+h1 {
+    font-family: sans-serif;
+    background-color: #008CBA;
+    width: 20%;
+    padding: 15px 27px;
+    color: #dddddd;
+    border-radius: 15px;
+
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.1em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 15px 27px;
+}
+.styled-table tbody tr {
+    border-bottom: thin solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: thick solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+label {
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.buttonShow {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 25px;
+}
+
+span.error {
+    background-color: white;
+    color: red;
+    font-family: sans-serif;
+
+}
+
+.column {
+    float: left;
+    width: 40%;
+    padding-left: 5%;
+    padding-top: 5%;
+
+  }
+  
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.submitUser {
+    font-size: 16px;
+    padding: 7px 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #008CBA;
+    border-radius: 4px;
+    background-color: white;
+    font-weight: bold;
+}
+
+input{
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+span{
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+label[for=showUsers] {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#searchBarFname{
+    background-image:url(https://www.w3schools.com/css/searchicon.png);
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
