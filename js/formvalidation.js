@@ -151,28 +151,6 @@ document.getElementById("showUsers").addEventListener("click", function (e) {
     .then((response) => response.json())
     .then((data) => transformData(data));
 });
-/*
-document
-  .getElementById("searchBarFname")
-  .addEventListener("keyup", function () {
-    let searchBarFname = document.getElementById("searchBarFname");
-    let filterUser = searchBarFname.value.toUpperCase();
-    let tableUsers = document.getElementById("tableUsers");
-    let tableRow = tableUsers.getElementsByTagName("tr");
-
-    for (let i = 0; i < tableRow.length; i++) {
-      tableData = tableRow[i].getElementsByTagName("td")[0];
-      if (tableData) {
-        txtValue = tableData.textContent || tableData.innerText;
-        if (txtValue.toUpperCase().indexOf(filterUser) > -1) {
-          tableRow[i].style.display = "";
-        } else {
-          tableRow[i].style.display = "none";
-        }
-      }
-    }
-  });
-*/
 
 document.getElementById("searchBar").addEventListener("keyup", function () {
   let searchBar = document.getElementById("searchBar");
