@@ -178,3 +178,13 @@ document.getElementById("searchBar").addEventListener("keyup", function () {
     }
   }
 });
+
+$(function () {
+  $("#fname, #lname, #age, #email").tooltip({
+    position: {
+      my: "left top",
+      at: "right+5 top-5",
+      collision: "none",
+    },
+  });
+});

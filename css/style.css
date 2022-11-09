@@ -115,3 +115,26 @@ label[for=showUsers] {
     border: 1px solid #ddd;
     margin-bottom: 12px;
 }
+
+.ui-helper-hidden {
+	display: none;
+}
+
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.ui-tooltip {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font: bold 14px Sans-Serif;
+    box-shadow: 0 0 7px black;
+    max-width: 190px;
+  }

@@ -14,25 +14,25 @@
     <form id="formUser" method="post" name="register" action="/register">
       <div class="firstname">
         <label for="fname" class="required">First name:</label><br>
-        <input type="text" id="fname" name="fname" placeholder="Enter your first name"><br>
+        <input type="text" id="fname" name="fname" placeholder="Enter your first name" title="Provide us a valid first name"><br>
         <span class="error" id="firstname"></span><br><br>
       </div>
 
       <div class="lastname">
         <label for="lname" class="required">Last name:</label><br>
-        <input type="text" id="lname" name="lname" placeholder="Enter your last name"><br>
+        <input type="text" id="lname" name="lname" placeholder="Enter your last name" title="Provide us a valid last name"><br>
         <span class="error" id="lastname"></span><br><br>
       </div>
 
       <div class="age">   
         <label for="age">Age:</label><br>
-        <input type="number" id="age" name="age" placeholder="Enter your age"><br>
+        <input type="number" id="age" name="age" placeholder="Enter your age" title="Provide us an age"><br>
         <span class="error" id="ageSpan"></span><br><br>
       </div>
 
       <div class="email">
         <label for="mail">e-mail:</label><br>
-        <input type="email" id="email" name="email" placeholder="Enter your email"><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" title="Provide us a valid email"><br>
         <span class="error" id="emailSpan"></span><br><br>
       </div>
 
@@ -63,6 +63,8 @@
       </table>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
   <script src="js/formvalidation.js"></script>
 </body>
 </html>
