@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("showUsers").click();
 });
 
+// Form and Validation
+
 document.getElementById("formUser").addEventListener("submit", function (e) {
   e.preventDefault();
   let valFirst = document.getElementById("fname");
@@ -27,6 +29,8 @@ document.getElementById("formUser").addEventListener("submit", function (e) {
   errorAge.innerHTML = "";
   errorEmail.innerHTML = "";
   let valid = [];
+
+  // Validation
 
   if (valFirst.value == null || valFirst.value == "") {
     errorFirstName.innerHTML = "First Name is required";
@@ -80,6 +84,8 @@ document.getElementById("formUser").addEventListener("submit", function (e) {
     return element === "true";
   }
 
+  // If validation is OK then send to database
+
   if (valid.every(checkData)) {
     fetch(
       "https://formvalidation-197a7-default-rtdb.europe-west1.firebasedatabase.app/users.json",
@@ -90,6 +96,8 @@ document.getElementById("formUser").addEventListener("submit", function (e) {
     ).then((resp) => document.getElementById("showUsers").click());
   }
 });
+
+// Transform database data to display in table
 
 const transformData = (data) => {
   const transformedData = [];
@@ -112,14 +120,51 @@ const transformData = (data) => {
     temp += "<td>" + transformedData[i].age + "</td>";
     temp += "<td>" + transformedData[i].email + "</td>";
     temp +=
-      "<td>" +
-      "<button type='button' id=" +
+      "<td> <button type='button' id=" +
       transformedData[i].id +
       " " +
-      "class='buttonDelete'>Delete</button>" +
-      "</td></tr>";
+      "class='buttonDelete'>Delete</button> </td>";
+    temp +=
+      "<td> <button type='button' class='buttonModifyUser'>Modify</button> </td>";
+    temp +=
+      "<td> <button type='button' class='buttonShowUser'>Show</button> </td></tr>";
   }
   document.getElementById("data").innerHTML = temp;
+
+  // Button to display user information in a dialog
+
+  let buttonsShow = document.querySelectorAll(".buttonShowUser");
+
+  let valFirstDialogShow = document.getElementById("fnameDialogShow");
+  let valLastDialogShow = document.getElementById("lnameDialogShow");
+  let valAgeDialogShow = document.getElementById("ageDialogShow");
+  let valEmailDialogShow = document.getElementById("emailDialogShow");
+
+  let dialogShowUser = $("#dialogShowUser").dialog({
+    autoOpen: false,
+    dialogClass: "no-close",
+    modal: true,
+    buttons: [
+      {
+        text: "Close",
+        click: function () {
+          $(this).dialog("close");
+        },
+      },
+    ],
+  });
+  for (let i = 0; i < buttonsShow.length; i++) {
+    buttonsShow[i].addEventListener("click", function () {
+      valFirstDialogShow.value = transformedData[i].fname;
+      valLastDialogShow.value = transformedData[i].lname;
+      valAgeDialogShow.value = transformedData[i].age;
+      valEmailDialogShow.value = transformedData[i].email;
+
+      dialogShowUser.dialog("open");
+    });
+  }
+
+  // Button to delete a user entry in the database
 
   for (let i = 0; i < transformedData.length; i++) {
     document
@@ -141,6 +186,8 @@ const transformData = (data) => {
   }
 };
 
+// Get data from the database and call the "transformData" function to display the information in the table
+
 document.getElementById("showUsers").addEventListener("click", function (e) {
   fetch(
     "https://formvalidation-197a7-default-rtdb.europe-west1.firebasedatabase.app/users.json",
@@ -151,6 +198,8 @@ document.getElementById("showUsers").addEventListener("click", function (e) {
     .then((response) => response.json())
     .then((data) => transformData(data));
 });
+
+// Search bar code
 
 document.getElementById("searchBar").addEventListener("keyup", function () {
   let searchBar = document.getElementById("searchBar");
@@ -178,6 +227,8 @@ document.getElementById("searchBar").addEventListener("keyup", function () {
     }
   }
 });
+
+// Tooltip code to show "title" on inputs
 
 $(function () {
   $("#fname, #lname, #age, #email").tooltip({
