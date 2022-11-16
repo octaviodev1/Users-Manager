@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="row">
-    <div class="column">
+    <div class="firstColumn">
     
     <form id="formUser" method="post" name="register" action="/register">
       <div class="firstname">
@@ -41,7 +41,7 @@
       </div>
     </form>
     </div>
-    <div class="column">
+    <div class="secondColumn">
 
       <label for="showUsers" name="showUsers">List of Users  </label>
       <button type="button" id="showUsers" class="buttonShow">Show Users</button><br>
@@ -85,7 +85,31 @@
       </fieldset>
     </form>
       
+  </div>
+
+  <div id="dialogModifyUser" title="Modify User">
+    <form>
+      <fieldset>
+        
+        <label for="fnameDialogModify">First name</label>
+        <input type="text" name="fnameDialogModify" id="fnameDialogModify" class="text ui-widget-content ui-corner-all">
+        <span class="error" id="errorFnameDialog"></span><br>
+
+        <label for="lnameDialogModify">Last name</label>
+        <input type="text" name="lnameDialogModify" id="lnameDialogModify" class="text ui-widget-content ui-corner-all">
+        <span class="error" id="errorLnameDialog"></span><br>
+
+        <label for="ageDialogModify">Age</label>
+        <input type="number" name="ageDialogModify" id="ageDialogModify" class="text ui-widget-content ui-corner-all">
+        <span class="error" id="errorAgeDialog"></span><br>
+
+        <label for="emailDialogModify">Email</label>
+        <input type="text" name="emailDialogModify" id="emailDialogModify" class="text ui-widget-content ui-corner-all">
+        <span class="error" id="errorEmailDialog"></span><br>
+
+      </fieldset>
     </form>
+      
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>

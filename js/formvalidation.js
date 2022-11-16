@@ -164,6 +164,141 @@ const transformData = (data) => {
     });
   }
 
+  // Button to display user information in a dialog and MODIFY IT
+
+  let buttonsModify = document.querySelectorAll(".buttonModifyUser");
+
+  let valFirstDialogModify = document.getElementById("fnameDialogModify");
+  let valLastDialogModify = document.getElementById("lnameDialogModify");
+  let valAgeDialogModify = document.getElementById("ageDialogModify");
+  let valEmailDialogModify = document.getElementById("emailDialogModify");
+
+  let errorFirstNameDialog = document.getElementById("errorFnameDialog");
+  let errorLastNameDialog = document.getElementById("errorLnameDialog");
+  let errorAgeDialog = document.getElementById("errorAgeDialog");
+  let errorEmailDialog = document.getElementById("errorEmailDialog");
+
+  let validRegexEmailDialog =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  let actualIdUser;
+
+  let dialogModifyUser = $("#dialogModifyUser").dialog({
+    autoOpen: false,
+    dialogClass: "no-close",
+    modal: true,
+    buttons: [
+      {
+        text: "Modify User",
+        click: function () {
+          modifyUser(actualIdUser);
+        },
+      },
+      {
+        text: "Close",
+        click: function () {
+          $(this).dialog("close");
+        },
+      },
+    ],
+  });
+
+  for (let i = 0; i < buttonsModify.length; i++) {
+    buttonsModify[i].addEventListener("click", function () {
+      valFirstDialogModify.value = transformedData[i].fname;
+      valLastDialogModify.value = transformedData[i].lname;
+      valAgeDialogModify.value = transformedData[i].age;
+      valEmailDialogModify.value = transformedData[i].email;
+      actualIdUser = transformedData[i].id;
+
+      errorFirstNameDialog.innerHTML = "";
+      errorLastNameDialog.innerHTML = "";
+      errorAgeDialog.innerHTML = "";
+      errorEmailDialog.innerHTML = "";
+
+      dialogModifyUser.dialog("open");
+    });
+  }
+
+  function modifyUser(userId) {
+    errorFirstNameDialog.innerHTML = "";
+    errorLastNameDialog.innerHTML = "";
+    errorAgeDialog.innerHTML = "";
+    errorEmailDialog.innerHTML = "";
+    let validDialog = [];
+
+    const dataToModify = {
+      fname: document.getElementById("fnameDialogModify").value,
+      lname: document.getElementById("lnameDialogModify").value,
+      age: document.getElementById("ageDialogModify").value,
+      email: document.getElementById("emailDialogModify").value,
+    };
+
+    if (
+      valFirstDialogModify.value == null ||
+      valFirstDialogModify.value == ""
+    ) {
+      errorFirstNameDialog.innerHTML = "First Name is required";
+      validDialog.push("false");
+    } else {
+      validDialog.push("true");
+      dataToModify["fname"] =
+        document.getElementById("fnameDialogModify").value;
+    }
+
+    if (valLastDialogModify.value == null || valLastDialogModify.value == "") {
+      errorLastNameDialog.innerHTML = "Last Name is required";
+      validDialog.push("false");
+    } else {
+      validDialog.push("true");
+      dataToModify["lname"] =
+        document.getElementById("lnameDialogModify").value;
+    }
+
+    if (valAgeDialogModify.value == null || valAgeDialogModify.value == "") {
+      errorAgeDialog.innerHTML = "Age is required";
+      validDialog.push("false");
+    } else if (valAgeDialogModify.value < 0) {
+      errorAgeDialog.innerHTML = "Age is not valid";
+      validDialog.push("false");
+    } else {
+      validDialog.push("true");
+      dataToModify["age"] = document.getElementById("ageDialogModify").value;
+    }
+
+    if (
+      valEmailDialogModify.value == null ||
+      valEmailDialogModify.value == ""
+    ) {
+      errorEmailDialog.innerHTML = "Email is required";
+      validDialog.push("false");
+    } else if (!valEmailDialogModify.value.match(validRegexEmailDialog)) {
+      errorEmailDialog.innerHTML = "Email is not valid";
+      validDialog.push("false");
+    } else {
+      validDialog.push("true");
+      dataToModify["email"] = document.getElementById(
+        "valEmailDialogModify"
+      ).value;
+    }
+
+    function checkDataDialog(element) {
+      return element === "true";
+    }
+
+    if (validDialog.every(checkDataDialog)) {
+      fetch(
+        "https://formvalidation-197a7-default-rtdb.europe-west1.firebasedatabase.app/users/" +
+          userId +
+          ".json",
+        { method: "PUT", body: JSON.stringify(dataToModify) }
+      ).then((resp) => {
+        document.getElementById("showUsers").click();
+      });
+      dialogModifyUser.dialog("close");
+    }
+  }
+
   // Button to delete a user entry in the database
 
   for (let i = 0; i < transformedData.length; i++) {

@@ -52,10 +52,15 @@ span.error {
     font-family: sans-serif;
 
 }
-
-.column {
+.firstColumn{
+	float: left;
+    width: 25%;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+.secondColumn {
     float: left;
-    width: 40%;
+    width: 65%;
     padding-left: 5%;
     padding-top: 5%;
 
