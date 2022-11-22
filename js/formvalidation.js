@@ -93,7 +93,8 @@ document.getElementById("formUser").addEventListener("submit", function (e) {
         method: "POST",
         body: JSON.stringify(dataPost),
       }
-    ).then((resp) => document.getElementById("showUsers").click());
+    ).then((resp) => dialogLoading.dialog("open"));
+    //document.getElementById("showUsers").click());
   }
 });
 
@@ -277,9 +278,8 @@ const transformData = (data) => {
       validDialog.push("false");
     } else {
       validDialog.push("true");
-      dataToModify["email"] = document.getElementById(
-        "valEmailDialogModify"
-      ).value;
+      dataToModify["email"] =
+        document.getElementById("emailDialogModify").value;
     }
 
     function checkDataDialog(element) {
@@ -293,7 +293,8 @@ const transformData = (data) => {
           ".json",
         { method: "PUT", body: JSON.stringify(dataToModify) }
       ).then((resp) => {
-        document.getElementById("showUsers").click();
+        dialogLoading.dialog("open");
+        // document.getElementById("showUsers").click();
       });
       dialogModifyUser.dialog("close");
     }
@@ -316,7 +317,8 @@ const transformData = (data) => {
         ".json",
       { method: "DELETE" }
     ).then((resp) => {
-      document.getElementById("showUsers").click();
+      dialogLoading.dialog("open");
+      // document.getElementById("showUsers").click();
     });
   }
 };
@@ -373,4 +375,27 @@ $(function () {
       collision: "none",
     },
   });
+});
+
+// Progressbar whit Dialog from Jquery UI
+$(function () {
+  let loadingBar = $("#loadingBar");
+
+  loadingBar.progressbar({
+    value: false,
+  });
+});
+
+let dialogLoading = $("#dialogLoading").dialog({
+  modal: true,
+  resizable: false,
+  dialogClass: "no-close",
+  title: "Wait please...",
+  autoOpen: false,
+  open: function () {
+    setTimeout(function () {
+      document.getElementById("showUsers").click();
+      $("#dialogLoading").dialog("close");
+    }, 2000);
+  },
 });
