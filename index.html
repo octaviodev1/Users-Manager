@@ -1,121 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Form Validation</title>
-</head>
-<body>
-  <div class="row">
-    <div class="firstColumn">
-    
-    <form id="formUser" method="post" name="register" action="/register">
-      <div class="firstname">
-        <label for="fname" class="required">First name:</label><br>
-        <input type="text" id="fname" name="fname" placeholder="Enter your first name" title="Provide us a valid first name"><br>
-        <span class="error" id="firstname"></span><br><br>
-      </div>
+  </head>
+  <body>
+    <div class="row">
+      <div class="firstColumn">
+        <form id="formUser" method="post" name="register" action="/register">
+          <div class="firstname">
+            <label for="fname" class="required">First name:</label><br />
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              placeholder="Enter your first name"
+              title="Provide us a valid first name"
+            /><br />
+            <span class="error" id="firstname"></span><br /><br />
+          </div>
 
-      <div class="lastname">
-        <label for="lname" class="required">Last name:</label><br>
-        <input type="text" id="lname" name="lname" placeholder="Enter your last name" title="Provide us a valid last name"><br>
-        <span class="error" id="lastname"></span><br><br>
-      </div>
+          <div class="lastname">
+            <label for="lname" class="required">Last name:</label><br />
+            <input
+              type="text"
+              id="lname"
+              name="lname"
+              placeholder="Enter your last name"
+              title="Provide us a valid last name"
+            /><br />
+            <span class="error" id="lastname"></span><br /><br />
+          </div>
 
-      <div class="age">   
-        <label for="age">Age:</label><br>
-        <input type="number" id="age" name="age" placeholder="Enter your age" title="Provide us an age"><br>
-        <span class="error" id="ageSpan"></span><br><br>
-      </div>
+          <div class="age">
+            <label for="age">Date of Birth:</label><br />
+            <input
+              type="date"
+              id="age"
+              name="age"
+              placeholder="Enter your age"
+              title="Provide us an age"
+            /><br />
+            <span class="error" id="ageSpan"></span><br /><br />
+          </div>
 
-      <div class="email">
-        <label for="mail">e-mail:</label><br>
-        <input type="email" id="email" name="email" placeholder="Enter your email" title="Provide us a valid email"><br>
-        <span class="error" id="emailSpan"></span><br><br>
-      </div>
+          <div class="email">
+            <label for="mail">e-mail:</label><br />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              title="Provide us a valid email"
+            /><br />
+            <span class="error" id="emailSpan"></span><br /><br />
+          </div>
 
-      <div class="register">
-        <input type="submit" value="Register User" class="submitUser">
+          <div class="register">
+            <input type="submit" value="Register User" class="submitUser" />
+          </div>
+        </form>
       </div>
-    </form>
+      <div class="secondColumn">
+        <label for="showUsers" name="showUsers">List of Users </label>
+        <button type="button" id="showUsers" class="buttonShow">
+          Show Users</button
+        ><br />
+        <input type="text" id="searchBar" placeholder="Search for names..." />
+
+        <table id="tableUsers" class="styled-table">
+          <thead>
+            <tr class="active-row">
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Date of Birth</th>
+              <th>E-mail</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="data"></tbody>
+        </table>
+      </div>
     </div>
-    <div class="secondColumn">
+    <div id="dialogShowUser" title="User">
+      <form>
+        <fieldset>
+          <label for="fnameDialog">First name</label>
+          <input
+            type="text"
+            name="fnameDialog"
+            id="fnameDialogShow"
+            class="text ui-widget-content ui-corner-all"
+            disabled
+          />
 
-      <label for="showUsers" name="showUsers">List of Users  </label>
-      <button type="button" id="showUsers" class="buttonShow">Show Users</button><br>
-      <input type="text" id="searchBar"  placeholder="Search for names...">
+          <label for="lnameDialog">Last name</label>
+          <input
+            type="text"
+            name="lnameDialog"
+            id="lnameDialogShow"
+            class="text ui-widget-content ui-corner-all"
+            disabled
+          />
 
-      <table id="tableUsers" class="styled-table">
-        <thead>
-          <tr class="active-row">
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>E-mail</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            
-          </tr>
-        </thead>
-        <tbody id="data">
-    
-        </tbody>
-      </table>
+          <label for="ageDialog">Date of Birth</label>
+          <input
+            type="text"
+            name="ageDialog"
+            id="ageDialogShow"
+            class="text ui-widget-content ui-corner-all"
+            disabled
+          />
+
+          <label for="emailDialog">Email</label>
+          <input
+            type="text"
+            name="emailDialog"
+            id="emailDialogShow"
+            class="text ui-widget-content ui-corner-all"
+            disabled
+          />
+        </fieldset>
+      </form>
     </div>
-  </div>
-  <div id="dialogShowUser" title="User">
-    <form>
-      <fieldset>
-        
-        <label for="fnameDialog">First name</label>
-        <input type="text" name="fnameDialog" id="fnameDialogShow" class="text ui-widget-content ui-corner-all" disabled>
 
-        <label for="lnameDialog">Last name</label>
-        <input type="text" name="lnameDialog" id="lnameDialogShow" class="text ui-widget-content ui-corner-all" disabled>
+    <div id="dialogModifyUser" title="Modify User">
+      <form>
+        <fieldset>
+          <label for="fnameDialogModify">First name</label>
+          <input
+            type="text"
+            name="fnameDialogModify"
+            id="fnameDialogModify"
+            class="text ui-widget-content ui-corner-all"
+          />
+          <span class="error" id="errorFnameDialog"></span><br />
 
-        <label for="ageDialog">Age</label>
-        <input type="text" name="ageDialog" id="ageDialogShow" class="text ui-widget-content ui-corner-all" disabled>
+          <label for="lnameDialogModify">Last name</label>
+          <input
+            type="text"
+            name="lnameDialogModify"
+            id="lnameDialogModify"
+            class="text ui-widget-content ui-corner-all"
+          />
+          <span class="error" id="errorLnameDialog"></span><br />
 
-        <label for="emailDialog">Email</label>
-        <input type="text" name="emailDialog" id="emailDialogShow" class="text ui-widget-content ui-corner-all" disabled>
+          <label for="ageDialogModify">Date of Birth</label>
+          <input
+            type="date"
+            name="ageDialogModify"
+            id="ageDialogModify"
+            class="text ui-widget-content ui-corner-all"
+          />
+          <span class="error" id="errorAgeDialog"></span><br />
 
-      </fieldset>
-    </form>
-      
-  </div>
+          <label for="emailDialogModify">Email</label>
+          <input
+            type="text"
+            name="emailDialogModify"
+            id="emailDialogModify"
+            class="text ui-widget-content ui-corner-all"
+          />
+          <span class="error" id="errorEmailDialog"></span><br />
+        </fieldset>
+      </form>
+    </div>
 
-  <div id="dialogModifyUser" title="Modify User">
-    <form>
-      <fieldset>
-        
-        <label for="fnameDialogModify">First name</label>
-        <input type="text" name="fnameDialogModify" id="fnameDialogModify" class="text ui-widget-content ui-corner-all">
-        <span class="error" id="errorFnameDialog"></span><br>
-
-        <label for="lnameDialogModify">Last name</label>
-        <input type="text" name="lnameDialogModify" id="lnameDialogModify" class="text ui-widget-content ui-corner-all">
-        <span class="error" id="errorLnameDialog"></span><br>
-
-        <label for="ageDialogModify">Age</label>
-        <input type="number" name="ageDialogModify" id="ageDialogModify" class="text ui-widget-content ui-corner-all">
-        <span class="error" id="errorAgeDialog"></span><br>
-
-        <label for="emailDialogModify">Email</label>
-        <input type="text" name="emailDialogModify" id="emailDialogModify" class="text ui-widget-content ui-corner-all">
-        <span class="error" id="errorEmailDialog"></span><br>
-
-      </fieldset>
-    </form>
-  </div>
-
-  <div id="dialogLoading" title="Loading Screen">
-    <div id="loadingBar"></div>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-  <script src="js/formvalidation.js"></script>
-</body>
+    <div id="dialogLoading" title="Loading Screen">
+      <div id="loadingBar"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="js/formvalidation.js"></script>
+  </body>
 </html>
