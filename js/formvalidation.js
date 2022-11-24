@@ -4,6 +4,21 @@ document.getElementById("showUsers").style.visibility = "hidden";
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("showUsers").click();
 });
+// Dialog for the add user button
+
+document.getElementById("addNewUser").addEventListener("click", function () {
+  dialogNewUser.dialog("open");
+});
+
+let dialogNewUser = $("#addNewUserDialog").dialog({
+  modal: true,
+  resizable: false,
+  title: "Add User",
+  autoOpen: false,
+  open: function () {
+    $("#buttonSubmitUser").focus();
+  },
+});
 
 // Form and Validation
 
@@ -52,12 +67,29 @@ document.getElementById("formUser").addEventListener("submit", function (e) {
     valLast.value = "";
   }
 
+  function getAge(dateOfBirth) {
+    var todayDate = new Date();
+    var birthDate = new Date(dateOfBirth);
+    var age = todayDate.getFullYear() - birthDate.getFullYear();
+    var monthDate = todayDate.getMonth() - birthDate.getMonth();
+    if (
+      monthDate < 0 ||
+      (monthDate === 0 && todayDate.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  }
+
+  let enteredValue = valAge.value;
+  let enteredAge = getAge(enteredValue);
+
   if (valAge.value == null || valAge.value == "") {
     errorAge.innerHTML = "Age is required";
     e.preventDefault();
     valid.push("false");
-  } else if (valAge.value < 0) {
-    errorAge.innerHTML = "Age is not valid";
+  } else if (enteredAge < 18) {
+    errorAge.innerHTML = "You need to be 18 years or over";
     e.preventDefault();
     valid.push("false");
   } else {
@@ -94,6 +126,8 @@ document.getElementById("formUser").addEventListener("submit", function (e) {
         body: JSON.stringify(dataPost),
       }
     ).then((resp) => dialogLoading.dialog("open"));
+    dialogNewUser.dialog("close");
+
     //document.getElementById("showUsers").click());
   }
 });

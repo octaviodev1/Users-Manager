@@ -50,18 +50,6 @@ span.error {
   color: red;
   font-family: sans-serif;
 }
-.firstColumn {
-  float: left;
-  width: 25%;
-  padding-left: 5%;
-  padding-top: 5%;
-}
-.secondColumn {
-  float: left;
-  width: 65%;
-  padding-left: 5%;
-  padding-top: 5%;
-}
 
 .row:after {
   content: "";
@@ -544,7 +532,10 @@ button.ui-button::-moz-focus-inner {
   background-image: none;
 }
 .ui-tooltip {
-  padding: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font: bold 14px Sans-Serif;
+  box-shadow: 0 0 7px black;
   position: absolute;
   z-index: 9999;
   max-width: 300px;
@@ -1340,14 +1331,6 @@ a.ui-button:active,
   padding: 0;
   position: absolute;
   width: 1px;
-}
-
-.ui-tooltip {
-  padding: 10px 20px;
-  border-radius: 10px;
-  font: bold 14px Sans-Serif;
-  box-shadow: 0 0 7px black;
-  max-width: 190px;
 }
 
 .no-close .ui-dialog-titlebar-close {
