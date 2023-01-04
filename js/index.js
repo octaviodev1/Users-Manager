@@ -290,11 +290,28 @@ const transformData = (data) => {
         document.getElementById("lnameDialogModify").value;
     }
 
+    function getAgeDialog(dateOfBirth) {
+      var todayDate = new Date();
+      var birthDate = new Date(dateOfBirth);
+      var age = todayDate.getFullYear() - birthDate.getFullYear();
+      var monthDate = todayDate.getMonth() - birthDate.getMonth();
+      if (
+        monthDate < 0 ||
+        (monthDate === 0 && todayDate.getDate() < birthDate.getDate())
+      ) {
+        age--;
+      }
+      return age;
+    }
+
+    let actualValue = valAgeDialogModify.value;
+    let actualAge = getAgeDialog(actualValue);
+
     if (valAgeDialogModify.value == null || valAgeDialogModify.value == "") {
       errorAgeDialog.innerHTML = "Age is required";
       e.preventDefault();
       validDialog.push("false");
-    } else if (enteredAge < 18) {
+    } else if (actualAge < 18) {
       errorAgeDialog.innerHTML = "You need to be 18 years or over";
       e.preventDefault();
       validDialog.push("false");
