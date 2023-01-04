@@ -292,9 +292,11 @@ const transformData = (data) => {
 
     if (valAgeDialogModify.value == null || valAgeDialogModify.value == "") {
       errorAgeDialog.innerHTML = "Age is required";
+      e.preventDefault();
       validDialog.push("false");
-    } else if (valAgeDialogModify.value < 0) {
-      errorAgeDialog.innerHTML = "Age is not valid";
+    } else if (enteredAge < 18) {
+      errorAgeDialog.innerHTML = "You need to be 18 years or over";
+      e.preventDefault();
       validDialog.push("false");
     } else {
       validDialog.push("true");
